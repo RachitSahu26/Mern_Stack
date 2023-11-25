@@ -10,9 +10,11 @@ const port = 3001;
 
 // Connect to MongoDB
 connectToMongo();
+
+
+
+
 // ......middlewhere...
-
-
 app.use(express.json())
 
 // routes 
