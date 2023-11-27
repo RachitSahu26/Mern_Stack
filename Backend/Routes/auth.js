@@ -2,7 +2,7 @@ import express from 'express';
 import User from '../Model/User.js';
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
-
+import fetchUser from  "../MidWare/FetchUserData.js"
 import dotenv from 'dotenv';
 dotenv.config();
 const router = express.Router();
@@ -10,7 +10,7 @@ const router = express.Router();
 // Middleware for parsing JSON
 router.use(express.json());
 
-// ROUTE 1: Create a User using POST "/api/auth/signup". No login required
+// ROUTE 1: Create a User using POST "/api/auth/signup". 
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -94,5 +94,30 @@ router.post('/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+
+
+
+
+
+
+
+
+
+//* ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
+router.post('/getuser',fetchUser, async (req, res) => {
+    try {
+        const userId = req.userId
+        console.log("getuser Id", userId)
+        const user = await User.findById(userId).select("-password")
+        res.send(user)
+        console.log("getuser", user)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal server error");
+    }
+})
+
+
 
 export default router;
