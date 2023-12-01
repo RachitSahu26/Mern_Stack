@@ -2,7 +2,7 @@ import express from 'express';
 import User from '../Model/User.js';
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
-import fetchUser from  "../MidWare/FetchUserData.js"
+import fetchUser from "../MidWare/FetchUserData.js"
 import dotenv from 'dotenv';
 dotenv.config();
 const router = express.Router();
@@ -104,10 +104,11 @@ router.post('/login', async (req, res) => {
 
 
 
+
 //* ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
 router.post('/getuser',fetchUser, async (req, res) => {
     try {
-        const userId = req.userId
+        const userId =req.userId
         console.log("getuser Id", userId)
         const user = await User.findById(userId).select("-password")
         res.send(user)
@@ -122,3 +123,4 @@ router.post('/getuser',fetchUser, async (req, res) => {
 
 
 export default router;
+

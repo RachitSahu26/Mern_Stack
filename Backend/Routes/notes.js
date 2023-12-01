@@ -4,31 +4,23 @@ import NotesSchema from "../Model/Notes.js"
 
 
 
+// ......................get all notes..........
 
-router.get('/getAllNotes', (req, res) => {
-
+//* ROUTE 1: Get All the Notes using: GET "/api/notes/fetchallnotes". Login required
+router.get('/fetchallnotes', async (req, res) => {
     try {
+        // Assuming that you have a user ID in the token, and you want to find notes for that user
+        const userId = req.header("auth-token");
 
-        NotesSchema.findOne({ user: req.user })
-
-        res.json(NotesSchema);
-    }
-    catch (error) {
+        // Fetch all notes for the specified user
+        const notes = await NotesSchema.find({ user: userId });
+        
+        res.json(notes);
+    } catch (error) {
         console.log(error);
         res.status(500).send("Internal Server Error");
     }
-
-
-
-
-
-})
-
-
-
-
-
-
+});
 
 
 

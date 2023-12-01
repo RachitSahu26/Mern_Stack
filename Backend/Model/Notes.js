@@ -1,6 +1,6 @@
 import mongoose, { model } from 'mongoose';
+
 const { Schema } = mongoose;
-// import user from '../Model/User.js';
 const { ObjectId } = mongoose.Schema.Types
 const NotesSchema = new Schema({
   
