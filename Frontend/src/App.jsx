@@ -1,16 +1,33 @@
 import React from 'react'
-
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'
+import MyState from './Context/Data/MyState'
+import Home from './Page/Home/Home'
+import Signup from './Page/Signup/Signup'
+import UpdateNote from './Page/UpdateNote/UpdateNote'
+import AddNote from './Page/AddNote/AddNote'
+import Login from './Page/Login/Login'
+import Nopage from './Page/NoPage/Nopage'
 function App() {
   return (
-    <div className=' flex justify-center items-center h-screen'>
-      <h2 className=' text-6xl font-bold text-pink-300'>
-        <span className='text-[green]'>M</span>
-        <span className='text-white'>E</span>
-        <span className='text-blue-400'>R</span>
-        <span className='text-green-200'>N </span>
-        Stack Course
-      </h2>
-    </div>
+    <MyState>
+
+
+      <Router>
+
+        <Routes>
+
+        <Route path="/" element={<Home/>} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/updatenote" element={<UpdateNote/>} />
+        <Route path="/addnote" element={<AddNote/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/*" element={<Nopage/>} />
+        </Routes>
+     
+      </Router>
+      
+    </MyState>
+
   )
 }
 

@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import NotesSchema from "../Model/Notes.js"
-
+import fetchUser from "../MidWare/FetchUserData.js"
 
 
 // ......................get all notes..........
@@ -9,12 +9,10 @@ import NotesSchema from "../Model/Notes.js"
 //* ROUTE 1: Get All the Notes using: GET "/api/notes/fetchallnotes". Login required
 router.get('/fetchallnotes', async (req, res) => {
     try {
-        // Assuming that you have a user ID in the token, and you want to find notes for that user
-        const userId = req.header("auth-token");
-
+      
         // Fetch all notes for the specified user
-        const notes = await NotesSchema.find({ user: userId });
-        
+        const notes = await NotesSchema.find({ user: req.userId });
+
         res.json(notes);
     } catch (error) {
         console.log(error);
@@ -29,7 +27,7 @@ router.get('/fetchallnotes', async (req, res) => {
 
 
 //* ROUTE 2: Add new Note using: POST "/api/notes/addnote". Login required
-router.post('/addnote', async (req, res) => {
+router.post('/addnote', fetchUser, async (req, res) => {
     try {
         //* data comimg from body(frontend)
         const { title, description, tag } = req.body
@@ -59,7 +57,43 @@ router.post('/addnote', async (req, res) => {
 
 
 
+//* ROUTE 3: Update an existing Note using: PUT "/api/notes/updatenote". Login required
+router.put('/updatenote/:id', fetchUser, async (req, res) => {
+    //* data comimg from body(frontend)
+    const { title, description, tag } = req.body;
+    const { id } = req.params;
 
+    try {
+        //* Find the note to be updated and update it
+        const note = await NotesSchema.findById({ _id: id })
+
+        //* validation
+        if (!note) {
+            return res.status(404).send("Not Found")
+        }
+
+        if (note.user.toString() !== req.userId) {
+            return res.status(401).send("Not Allowed");
+        }
+
+        console.log(note);
+
+        //* Note Update 
+        const notes = await NotesSchema.findByIdAndUpdate({ _id: id }, {
+            $set: {
+                title,
+                description,
+                tag
+            }
+        }, { new: true })
+
+        res.json({ notes, success: "Notes Updated Successfully" })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 
 
