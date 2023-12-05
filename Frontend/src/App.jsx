@@ -7,6 +7,8 @@ import UpdateNote from './Page/UpdateNote/UpdateNote'
 import AddNote from './Page/AddNote/AddNote'
 import Login from './Page/Login/Login'
 import Nopage from './Page/NoPage/Nopage'
+import Profile from './Page/Profile/Profile'
+import LogOut from './Page/Logout/LogOut'
 function App() {
   return (
     <MyState>
@@ -21,6 +23,9 @@ function App() {
         <Route path="/updatenote" element={<UpdateNote/>} />
         <Route path="/addnote" element={<AddNote/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/logout" element={<LogOut/>} />
+
         <Route path="/*" element={<Nopage/>} />
         </Routes>
      
