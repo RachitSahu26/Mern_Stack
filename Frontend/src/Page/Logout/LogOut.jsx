@@ -1,8 +1,11 @@
 import React from 'react'
+import Layout from '../../Components/LayOut/LayOut'
 
 function LogOut() {
   return (
-    <div>LogOut</div>
+<Layout>
+  LogOut
+</Layout>
   )
 }
 

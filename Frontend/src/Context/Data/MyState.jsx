@@ -1,18 +1,19 @@
-import myContext from "./MyContext.js";
+import React, { createContext, useState } from "react";
 
+// Create a context
+const MyContext = createContext();
 
 function MyState(props) {
-    return (
-        <myContext.Provider>
-            {
-                props.children
-            }
+  // Set up state or any other logic you need
 
-        </myContext.Provider>
+  // Replace 'defaultValue' with the initial value for your context
+  const [myStateValue, setMyStateValue] = useState("defaultValue");
 
-
-    )
+  return (
+    <MyContext.Provider value={{ myStateValue, setMyStateValue }}>
+      {props.children}
+    </MyContext.Provider>
+  );
 }
 
-
-export default MyState;
+export { MyContext, MyState };
