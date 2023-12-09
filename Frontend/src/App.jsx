@@ -9,6 +9,7 @@ import Login from './Page/Login/Login'
 import Nopage from './Page/NoPage/Nopage'
 import Profile from './Page/Profile/Profile'
 import LogOut from './Page/Logout/LogOut'
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <MyState>
@@ -28,9 +29,10 @@ function App() {
 
         <Route path="/*" element={<Nopage/>} />
         </Routes>
-     
+    {/* Toast container */}
+    <Toaster />
       </Router>
-      
+        
     </MyState>
 
   )

@@ -15,35 +15,42 @@ function Signup() {
     //* signup Handle Function
     const signupHandle = async () => {
         try {
-            //* Send Data Through Api 
-            const res = await axios.post('http://localhost:3001/api/auth/signup', {
-                name,
-                email,
-                password
-            });
-            // Extract data from the response
-            const signupData = res.data;
 
-            // Check for errors or success
+            const res = await fetch("http://localhost:3001/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+
+            });
+
+            const signupData = await res.json();
+            //* receiving response 
+
+            // console.log(signupData.success)
+
+            //* condition
             if (signupData.error) {
-                toast.error(signupData.error);
+                toast.error(signupData.error)
             } else {
-                toast.success(signupData.success);
-                navigate('/login');
+                toast.success(signupData.success)
+                navigate('/login')
             }
 
-            // Clear input fields
-            setName('');
-            setEmail('');
-            setPassword('');
+            setName("");
+            setEmail("");
+            setPassword("");
 
         } catch (error) {
-            // Handle any error that occurs during the request
             console.error('Error during signup:', error);
+            // Additional error handling if needed
             toast.error('Failed to sign up. Please try again.');
         }
-
-
 
 
 
