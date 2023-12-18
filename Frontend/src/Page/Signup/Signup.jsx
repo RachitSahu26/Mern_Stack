@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
-import axios from 'axios';
+// import axios from 'axios';
 function Signup() {
 
     //* creating three useState
@@ -12,10 +12,10 @@ function Signup() {
     //* navigate
     const navigate = useNavigate();
 
-    //* signup Handle Function
+
+
     const signupHandle = async () => {
         try {
-
             const res = await fetch("http://localhost:3001/api/auth/signup", {
                 method: "POST",
                 headers: {
@@ -26,56 +26,60 @@ function Signup() {
                     email,
                     password,
                 })
-
             });
 
-            const signupData = await res.json();
-            //* receiving response 
+            if (res.ok) {
+                const signupData = await res.json();
+                console.log(signupData.success);
 
-            // console.log(signupData.success)
+                if (signupData.error) {
+                    toast.error(signupData.error);
+                } else {
+                    toast.success(signupData.success);
+                    navigate('/login');
+                }
 
-            //* condition
-            if (signupData.error) {
-                toast.error(signupData.error)
+                setName("");
+                setEmail("");
+                setPassword("");
             } else {
-                toast.success(signupData.success)
-                navigate('/login')
+                console.error('Network response was not ok');
+                toast.error('Failed to sign up. Please try again.');
             }
-
-            setName("");
-            setEmail("");
-            setPassword("");
-
         } catch (error) {
             console.error('Error during signup:', error);
-            // Additional error handling if needed
             toast.error('Failed to sign up. Please try again.');
         }
+    };
 
 
 
 
 
-
-
-
-
-
-
-
-
-    }
 
     return (
-        <div className=' flex justify-center items-center h-screen'>
+        <div className='flex justify-center items-center h-screen'>
+            <form
+                className='bg-[#d2cbbf] shadow-md px-10 py-10 rounded-xl'
+                onSubmit={(e) => {
+                    e.preventDefault(); // Prevents the default form submission behavior
+                    signupHandle();
+                }}
+            >
+                {/* ... Other input fields */}
 
-            {/* main div  */}
-            <div className=' bg-[#d2cbbf] shadow-md px-10 py-10 rounded-xl '>
+
+
+
+
 
                 {/* Top Heading  */}
                 <div className="">
                     <h1 className='text-center text-black text-xl mb-4 font-bold'>Signup</h1>
                 </div>
+
+
+
 
                 {/* Input 1 Name  */}
                 <div>
@@ -89,6 +93,9 @@ function Signup() {
                     />
                 </div>
 
+
+
+
                 {/* Input 2 Email  */}
                 <div>
                     <input
@@ -101,7 +108,12 @@ function Signup() {
                     />
                 </div>
 
-                {/* Input 3 Password  */}
+
+
+
+
+
+
                 <div>
                     <input
                         value={password}
@@ -112,22 +124,26 @@ function Signup() {
                     />
                 </div>
 
-                {/* Button For Signup  */}
-                <div className=' flex justify-center mb-3'>
+                <div className='flex justify-center mb-3'>
                     <button
-                        onClick={signupHandle}
-                        className=' bg-red-700 w-full text-white font-bold  px-2 py-2 rounded-lg'>
+                        type="submit" // Specify the button type as "submit"
+                        className='bg-red-700 w-full text-white font-bold px-2 py-2 rounded-lg'
+                    >
                         Signup
                     </button>
                 </div>
 
-                {/* Link For Login  */}
-                <div>
-                    <h2 className='text-black'>Have an account <Link className=' text-green-700 font-bold' to={'/login'}>Login</Link></h2>
-                </div>
-            </div>
+                {/* ... Other form elements */}
+            </form>
         </div>
-    )
+    );
+
+
+
+
+
+
 }
+
 
 export default Signup

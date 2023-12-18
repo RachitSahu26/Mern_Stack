@@ -10,10 +10,7 @@ function Home() {
 <div className='flex  flex-col' >
 
 <Notes/>
-<Notes/>
-<Notes/>
-<Notes/>
-<Notes/>
+
 </div>
 
    </Layout>

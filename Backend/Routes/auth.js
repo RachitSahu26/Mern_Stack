@@ -13,7 +13,7 @@ router.use(express.json());
 // ROUTE 1: Create a User using POST "/api/auth/signup". 
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
-
+    console.log('Received signup data:', req.body);
     try {
         // Validation
         if (!name || !email || !password) {

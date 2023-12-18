@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'
-import { MyState } from './Context/Data/MyState'
+// import {MyState} from "./Context/Data/MyState";
 import Home from './Page/Home/Home'
 import Signup from './Page/Signup/Signup'
 import UpdateNote from './Page/UpdateNote/UpdateNote'
@@ -10,6 +10,7 @@ import Nopage from './Page/NoPage/Nopage'
 import Profile from './Page/Profile/Profile'
 import LogOut from './Page/Logout/LogOut'
 import { Toaster } from 'react-hot-toast';
+import MyState from './Context/Data/MyState'
 function App() {
   return (
     <MyState>
