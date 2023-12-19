@@ -25,8 +25,8 @@ function MyState(props) {
   const getAllNotes = async () => {
     setLoading(true)
     try {
-      const res = await fetch(`http://localhost:3001/api/auth/getuser`, {
-
+      const res = await fetch(`http://localhost:3001/api/notes/fetchallnotesr`, {
+ 
         method: "get",
         headers: {
           'Content-Type': 'application/json',
