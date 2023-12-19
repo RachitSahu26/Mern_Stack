@@ -1,8 +1,19 @@
 // src/components/Sidebar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+
+
+  const logout = () => {
+    localStorage.clear('token')
+
+    navigate('/login')
+  }
+
+
   return (
     <div className="bg-gradient-to-r from-fff878 to-ee49fd text-black w-64 h-screen border border-black">
       <div className="p-4">
@@ -65,10 +76,9 @@ const Sidebar = () => {
               </svg>
             </span>
 
-            <Link to={'/logout'}>
-              <span className=' font-semibold text-xl'>Logout</span>
+              <span className=' font-semibold text-xl' onClick={logout}>Logout</span>
 
-            </Link>
+          
           </li>
 
 
