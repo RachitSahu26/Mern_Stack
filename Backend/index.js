@@ -1,7 +1,13 @@
+
+
+// ...................................................
+
+
+
 // index.js
 import connectToMongo from "./DataBase/db.js";
 import express from 'express';
-import cors from 'cors'; // Use import for cors
+import cors from 'cors';
 import auth from "./Routes/auth.js";
 import notes from "./Routes/notes.js";
 
@@ -11,10 +17,11 @@ const port = 3001;
 // Connect to MongoDB
 connectToMongo();
 
-// ......middleware...
+// Enable CORS middleware before defining routes
+app.use(cors());
 app.use(express.json());
 
-// routes 
+// Define routes
 app.get("/", (req, res) => {
     res.send("rachit  sdadsadadasdadsahu");
 });
@@ -22,7 +29,6 @@ app.get("/", (req, res) => {
 // Corrected route
 app.use("/api/auth", auth);
 app.use("/api/notes", notes);
-app.use(cors());
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
