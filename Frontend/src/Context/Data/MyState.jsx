@@ -47,7 +47,49 @@ function MyState(props) {
       setLoading(false)
     }
 
+
+
+
+
+
+
+
+
+
+ //* Add note Function
+ const addNote = async () => {
+  const res = await fetch(`http://localhost:4000/api/notes/addnote`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('token')
+    },
+    body: JSON.stringify({ title, description, tag })
+  });
+
+
+
+
+
+
+
+
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
