@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../../Components/LayOut/LayOut';
+// import MyState from '../../Context/Data/MyState';
+import myContext from '../../Context/Data/MyContext';
 
 const AddNote = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [tag, setTag] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your logic here to handle the submission of the note
-    console.log('Submitted Note:', { title, description, tag });
-    // Reset the form after submission
-    setTitle('');
-    setDescription('');
-    setTag('');
-  };
+  const context = useContext(myContext);
+  const { title, setTitle, description, setDescription, tag, setTag, addNote } = context;
 
   return (
 
@@ -22,7 +13,7 @@ const AddNote = () => {
 
       <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Note</h2>
-        <form onSubmit={handleSubmit}>
+        <form >
 
 
 
@@ -58,7 +49,7 @@ const AddNote = () => {
               id="tag"
               name="tag"
               value={tag}
-              onChange={(e) => setTag(e.target.value)}
+              onChange={(e) =>setTag (e.target.value)}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
               required
             />
@@ -87,6 +78,8 @@ const AddNote = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          onClick={addNote}
+          
           >
             Add Note
           </button>
