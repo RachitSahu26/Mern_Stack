@@ -18,7 +18,7 @@ function Layout({ children }) {
     </nav>
 
                 {/* main content  */}
-                <main class="flex-1 min-w-0 overflow-auto ...">
+                <main className="flex-1 min-w-0 overflow-auto ...">
                     <div className=" flex  justify-center">
                         {children}
                     </div>
