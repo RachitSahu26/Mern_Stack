@@ -80,7 +80,7 @@ function MyState(props) {
 
       body: JSON.stringify({ title, description, tag })
 
-      
+
     });
 
 
@@ -110,12 +110,28 @@ function MyState(props) {
 
 
 
+  // ...................................delete Notes............
+  const deleteNote = async (id) => {
 
+    const res = await fetch(`http://localhost:3001/api/notes//deletenote/:${id}`, {
 
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token": localStorage.getItem('token')
+      }
+    }
+    )
+    //* response
+    const noteData = await res.json();
+    getAllNotes();
+    // console.log(noteData)
+    toast.success(noteData.success)
+  }
 
 
   return (
-    <MyContext.Provider value={{ title, setTitle, description, setDescription, tag, setTag, addNote, myStateValue, setMyStateValue, noteData, setNoteData, getAllNotes, loading, setLoading }}>
+    <MyContext.Provider value={{ deleteNote,  title, setTitle, description, setDescription, tag, setTag, addNote, myStateValue, setMyStateValue, noteData, setNoteData, getAllNotes, loading, setLoading }}>
       {props.children}
     </MyContext.Provider>
   );

@@ -9,7 +9,7 @@ import fetchUser from "../MidWare/FetchUserData.js"
 //* ROUTE 1: Get All the Notes using: GET "/api/notes/fetchallnotes". Login required
 router.get('/fetchallnotes', async (req, res) => {
     try {
-      
+
         // Fetch all notes for the specified user
         const notes = await NotesSchema.find({ user: req.userId });
 
@@ -95,8 +95,38 @@ router.put('/updatenote/:id', fetchUser, async (req, res) => {
     }
 })
 
+//* ROUTE 4: delete an existing Note using: PUT "/api/notes/delete". Login required
+
+router.put('/deletenote/:id', fetchUser, async (req, res) => {
 
 
+    try {
+        //* Find the note to be updated and update it
+        const note = await NotesSchema.findById({ _id: id })
+
+
+
+        if (!note) {
+            return res.status(404).send("Not Found")
+        }
+
+
+        //* Allow deletion only if user owns this Note
+        if (note.user.toString() !== req.userId) {
+            return res.status(401).send("Not Allowed");
+        }
+
+
+        
+        note = await NotesSchema.findByIdAndDelete(req.params.id)
+        res.json({ "Success": "Note has been deleted", note: note });
+    }
+
+    catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 
 
