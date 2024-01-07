@@ -95,39 +95,37 @@ router.put('/updatenote/:id', fetchUser, async (req, res) => {
     }
 })
 
+
+
+
+
+
+
+
+
+
+
+
 //* ROUTE 4: delete an existing Note using: PUT "/api/notes/delete". Login required
-
-router.put('/deletenote/:id', fetchUser, async (req, res) => {
-
-
+router.delete('/deletenote/:id', fetchUser, async (req, res) => {
     try {
-        //* Find the note to be updated and update it
-        const note = await NotesSchema.findById({ _id: id })
-
-
+        const note = await NotesSchema.findById(req.params.id);
 
         if (!note) {
-            return res.status(404).send("Not Found")
+            return res.status(404).json({ error: "Note not found" });
         }
 
-
-        //* Allow deletion only if user owns this Note
         if (note.user.toString() !== req.userId) {
-            return res.status(401).send("Not Allowed");
+            return res.status(401).json({ error: "Not allowed" });
         }
 
-
-        
-        note = await NotesSchema.findByIdAndDelete(req.params.id)
-        res.json({ "Success": "Note has been deleted", note: note });
-    }
-
-    catch (error) {
+        await NotesSchema.findByIdAndDelete(req.params.id);
+        res.json({ success: "Note has been deleted" });
+    } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ error: "Internal Server Error" });
     }
-})
-
+});
 
 
 export default router

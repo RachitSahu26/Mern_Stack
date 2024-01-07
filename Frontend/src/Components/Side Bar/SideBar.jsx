@@ -43,6 +43,9 @@ const Sidebar = () => {
               <span className=' font-semibold text-xl'>Home</span>
             </li>
           </Link>
+
+
+
           {/* Add Note Link  */}
           <Link to={'/addnote'}>
             <li className='flex space-x-2 transition-all  items-center  h-16  hover:bg-white w-52 p-2 rounded-l-xl '>
@@ -54,6 +57,10 @@ const Sidebar = () => {
               <span className=' font-semibold text-xl'>Add Note</span>
             </li>
           </Link>
+
+
+
+          
           {/* Profile Page Link  */}
           <Link to={'/profile'}>
             <li className='flex space-x-2 transition-all  items-center  h-16  hover:bg-white w-52 p-2 rounded-l-xl '>

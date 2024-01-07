@@ -2,8 +2,6 @@
 
 // ...................................................
 
-
-
 // index.js
 import connectToMongo from "./DataBase/db.js";
 import express from 'express';

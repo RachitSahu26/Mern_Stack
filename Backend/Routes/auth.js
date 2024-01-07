@@ -11,9 +11,12 @@ const router = express.Router();
 router.use(express.json());
 
 // ROUTE 1: Create a User using POST "/api/auth/signup". 
+
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
+
     console.log('Received signup data:', req.body);
+
     try {
         // Validation
         if (!name || !email || !password) {
@@ -53,11 +56,22 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+
+
+
+
+
+
 // ROUTE 2: Login a User using POST "/api/auth/login". No login required
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
+   
+   
     try {
+      
+      
+      
         // Validation
         if (!email || !password) {
             return res.status(400).json({ error: "All fields are required" });
@@ -89,10 +103,14 @@ router.post('/login', async (req, res) => {
             res.status(401).json({ error: 'Email and password do not match' });
         }
 
-    } catch (error) {
+    } 
+    
+    catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
     }
+
+    
 });
 
 
