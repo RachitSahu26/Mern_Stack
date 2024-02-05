@@ -12,20 +12,20 @@ const Notes = () => {
   }, []);
 
   return (
-    <div>
+    <div className='mt-20'>
       {noteData.length > 0 ? (
         noteData.map((item, index) => (
 
-          <div key={index} className="max-w-md mx-auto mt-5 bg-white shadow-md overflow-hidden md:max-w-2xl">
+          <div key={index} className="max-w-[90%] mx-auto rounded-xl border-b-indigo-600 mt-5 text-white bg-black shadow-md overflow-hidden md:max-w-2xl">
             <div className="md:flex">
-              <div className="md:flex-shrink-0">
+              <div className="md:flex-shrink-0 ">
                 {/* <img
                   className="h-48 w-full object-cover md:w-48"
                   src={item.imageUrl}
                   alt="Note Image"
                 /> */}
               </div>
-              <div className="p-8">
+              <div className="p-8 ">
                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                   Note
                 </div>
@@ -35,7 +35,7 @@ const Notes = () => {
                 >
                   {item.title}
                 </a>
-                <p className="mt-2 text-gray-500">{item.description}</p>
+                <p className="mt-2 text-white">{item.description}</p>
 
               </div>
 
