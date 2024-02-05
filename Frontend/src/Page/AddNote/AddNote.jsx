@@ -11,7 +11,7 @@ const AddNote = () => {
 
     <Layout>
 
-      <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+      <div className="   w-[90%] lg:w-1/2 sm:mt-20 mt-20 p-5 bg-black text-indigo-500  rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Note</h2>
         <form >
 
@@ -22,7 +22,7 @@ const AddNote = () => {
           {/* Your input fields and labels go here */}
           {/* ....................title ........................... */}
           <div className="mb-4">
-            <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="title" className="block text-white text-sm font-bold mb-2">
               Title
             </label>
             <input
@@ -41,7 +41,7 @@ const AddNote = () => {
 
 
           <div className="mb-4">
-            <label htmlFor="tag" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="tag" className="block text-white text-sm font-bold mb-2">
               Tag
             </label>
             <input
@@ -59,7 +59,7 @@ const AddNote = () => {
           {/* ....................description........................... */}
 
           <div className="mb-4">
-            <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="description" className="block text-white text-sm font-bold mb-2">
               Description
             </label>
             <textarea
