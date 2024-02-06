@@ -131,7 +131,17 @@ function MyState(props) {
 
 
   return (
-    <MyContext.Provider value={{ deleteNote,  title, setTitle, description, setDescription, tag, setTag, addNote, myStateValue, setMyStateValue, noteData, setNoteData, getAllNotes, loading, setLoading }}>
+    <MyContext.Provider value={{
+      deleteNote,
+      title, setTitle,
+      description, setDescription,
+      tag, setTag,
+      addNote,
+      myStateValue, setMyStateValue,
+      noteData, setNoteData,
+      getAllNotes,
+      loading, setLoading
+    }}>
       {props.children}
     </MyContext.Provider>
   );

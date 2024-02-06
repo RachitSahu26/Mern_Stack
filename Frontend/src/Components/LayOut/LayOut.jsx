@@ -9,13 +9,13 @@ function Layout({ children }) {
             <div className=" md:hidden">
                 <TopNavbar />
             </div>
-            
+
             <div class="max-h-screen flex ">
 
                 {/* Sidebar hidden on mobile */}
-    <nav className="w-72 flex-none hidden md:block lg:hidden xl:block">
-      <SideBar />
-    </nav>
+                <nav className="w-72 flex-none hidden md:block lg:hidden xl:block">
+                    <SideBar />
+                </nav>
 
                 {/* main content  */}
                 <main className="flex-1 min-w-0 overflow-auto ...">

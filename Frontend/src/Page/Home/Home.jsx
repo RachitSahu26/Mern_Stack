@@ -7,7 +7,7 @@ import Notes from '../../Components/Notes/Notes'
 function Home() {
   return (
    <Layout>
-<div className='flex  flex-col' >
+<div className='flex  flex-col ' >
 
 <Notes/>
 

@@ -11,7 +11,7 @@ const AddNote = () => {
 
     <Layout>
 
-      <div className="   w-[90%] lg:w-1/2 sm:mt-20 mt-20 p-5 bg-black text-indigo-500  rounded-md shadow-md">
+      <div className="   w-[90%] lg:w-1/2 sm:mt-20 mt-20 border-white p-5 bg-black text-indigo-500  rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Note</h2>
         <form >
 
