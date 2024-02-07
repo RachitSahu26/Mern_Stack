@@ -7,7 +7,7 @@ const Profile = () => {
 
     <Layout>
 
-    <div className="max-w-[90%]  mt-[8rem] p-3  bg-black rounded-md shadow-md">
+    <div className="max-w-[90%]  mt-[8rem] p-3  bg-black rounded-xl shadow-md border-2 border-white">
       
       
       <div className="flex flex-col  p-2 items-center mb-4 ">

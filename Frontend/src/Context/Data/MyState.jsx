@@ -111,9 +111,9 @@ function MyState(props) {
 
 
   // ...................................delete Notes............
-  const deleteNote = async (id) => {
+  const deleteNote = async (_id) => {
 
-    const res = await fetch(`http://localhost:3001/api/notes/deletenote/${id}`, {
+    const res = await fetch(`http://localhost:3001/api/notes/deletenote/${_id}`, {
 
       method: "DELETE",
       headers: {
